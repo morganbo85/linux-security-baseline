@@ -1,0 +1,12 @@
+# Linux Security Baseline
+# Security auditing rules
+
+# Monitor local account and group changes
+-w /etc/passwd -p wa -k identity
+-w /etc/group -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/gshadow -p wa -k identity
+
+# Monitor OpenSSH configuration changes
+-w /etc/ssh/sshd_config -p wa -k ssh_config
+-w /etc/ssh/sshd_config.d/ -p wa -k ssh_config
