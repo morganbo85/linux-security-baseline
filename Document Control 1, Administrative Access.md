@@ -19,16 +19,17 @@ OpenSSH was configured to:
 - Require public key authentication
 - Prohibit empty passwords
 
-Effective SSH configuration:
+### Effective SSH configuration:
 
 ```
 PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 PermitEmptyPasswords no
+```
 
-Administrative workflow:
-
+### Administrative workflow:
+```
 SSH public key
       |
       v
@@ -39,25 +40,26 @@ sudo
       |
       v
 Privileged operation
-Verification
+```
+### Verification
 
 The effective OpenSSH configuration was verified with:
-
+```
 sudo sshd -T | grep -E \
 'permitrootlogin|passwordauthentication|pubkeyauthentication|permitemptypasswords'
-
+```
 The administrative account was also verified to have functional privilege elevation:
-
+```
 whoami
 sudo whoami
-
+```
 Expected result:
-
+```
 bo-admin
 root
-
+```
 A new SSH session was successfully established after the configuration changes to confirm that remote administrative access remained functional.
 
-Security Outcome
+### Security Outcome
 
 Direct remote root authentication is prohibited. Administrators authenticate using individual accounts and SSH keys, with privileged actions performed through sudo.
